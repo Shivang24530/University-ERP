@@ -28,12 +28,15 @@ CREATE TABLE IF NOT EXISTS sections (
     instructor_id INT,
     day_time VARCHAR(50),
     room VARCHAR(20),
-    capacity INT,
+    capacity INT NOT NULL,
     semester VARCHAR(20),
     year INT,
     FOREIGN KEY (course_id) REFERENCES courses(course_id),
     FOREIGN KEY (instructor_id) REFERENCES instructors(user_id)
 );
+
+-- adding the CHECK constraint:
+ALTER TABLE sections ADD CONSTRAINT chk_section_capacity CHECK (capacity > 0);
 
 CREATE TABLE IF NOT EXISTS enrollments (
     enrollment_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -52,6 +55,9 @@ SELECT * FROM sections;
 SELECT * FROM enrollments;
 SELECT * FROM grades;
 SELECT * FROM settings;
+
+
+DELETE FROM sections WHERE section_id = 7;
 
 DELETE FROM enrollments WHERE enrollment_id = 3;
 

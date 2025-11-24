@@ -195,6 +195,11 @@ public class CourseManagementFrame {
                     JOptionPane.showMessageDialog(frame, "Capacity and Year must be numbers.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+                // Application-level validation: capacity must be positive
+                if (capacity <= 0) {
+                    JOptionPane.showMessageDialog(frame, "Capacity must be a positive number.", "Invalid Capacity", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 int courseId = selectedCourse.getCourseId(); // Get ID from the object
 
                 // 3. Call service
