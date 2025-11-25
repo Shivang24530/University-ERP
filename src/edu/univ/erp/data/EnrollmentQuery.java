@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import edu.univ.erp.domain.MySectionItem;
 import edu.univ.erp.domain.TimetableItem;
 
-public class EnrollmentDAO {
+public class EnrollmentQuery {
 
     /**
      * Enrolls a student in a specific section.

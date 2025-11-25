@@ -12,7 +12,7 @@ import edu.univ.erp.domain.GradeItem; // Import the new domain object
 import edu.univ.erp.domain.TranscriptItem;
 import edu.univ.erp.domain.GradebookEntry;
 
-public class GradeDAO {
+public class GradeQuery {
 
     /**
      * Fetches all grade components for a specific student.
@@ -25,17 +25,7 @@ public class GradeDAO {
         
         // This query joins grades, enrollments, sections, and courses
         // to get all info needed for the UI.
-        String sql = "SELECT " +
-                     "  c.code, " +
-                     "  g.component, " +
-                     "  g.score, " +
-                     "  g.final_grade " +
-                     "FROM grades g " +
-                     "JOIN enrollments e ON g.enrollment_id = e.enrollment_id " +
-                     "JOIN sections s ON e.section_id = s.section_id " +
-                     "JOIN courses c ON s.course_id = c.course_id " +
-                     "WHERE e.student_id = ? " +
-                     "ORDER BY c.code, g.component"; // Order them logically
+        String sql = "SELECT c.code, g.component, g.score, g.final_grade FROM grades g JOIN enrollments e ON g.enrollment_id = e.enrollment_id JOIN sections s ON e.section_id = s.section_id JOIN courses c ON s.course_id = c.course_id WHERE e.student_id = ? ORDER BY c.code, g.component";
 
         try (Connection conn = DatabaseConnector.getErpConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -78,19 +68,7 @@ public class GradeDAO {
         
         // This query joins 4 tables and groups by course
         // to get the final grade for each completed course.
-        String sql = "SELECT " +
-                     "  c.code, " +
-                     "  c.title, " +
-                     "  c.credits, " +
-                     "  g.final_grade " +
-                     "FROM grades g " +
-                     "JOIN enrollments e ON g.enrollment_id = e.enrollment_id " +
-                     "JOIN sections s ON e.section_id = s.section_id " +
-                     "JOIN courses c ON s.course_id = c.course_id " +
-                     "WHERE e.student_id = ? " +
-                     "AND g.final_grade IS NOT NULL AND g.final_grade != '' " +
-                     "GROUP BY c.course_id, g.final_grade " + // Group to get one entry per course
-                     "ORDER BY c.code";
+        String sql = "SELECT c.code, c.title, c.credits, g.final_grade FROM grades g JOIN enrollments e ON g.enrollment_id = e.enrollment_id JOIN sections s ON e.section_id = s.section_id JOIN courses c ON s.course_id = c.course_id WHERE e.student_id = ? AND g.final_grade IS NOT NULL AND g.final_grade != '' GROUP BY c.course_id, g.final_grade ORDER BY c.code";
 
         try (Connection conn = DatabaseConnector.getErpConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -212,26 +190,15 @@ public class GradeDAO {
         // This query finds an existing "Final Grade" row and updates it,
         // or inserts a new one if it doesn't exist.
         // updates the 'final grade' if the column 'enrollment_id' and 'component' already exists.
-        // String sql = "INSERT INTO grades (enrollment_id, component, final_grade) " +
-        //              "VALUES (?, 'Final Grade', ?) " +
-        //              "ON DUPLICATE KEY UPDATE final_grade = VALUES(final_grade)";
-       String sql = "UPDATE grades SET final_grade = ? " +
-                    "WHERE enrollment_id = ? AND component = 'Final Grade'; " +
-                    "INSERT INTO grades (enrollment_id, component, final_grade) " +
-                    "SELECT ?, 'Final Grade', ? " +
-                    "WHERE NOT EXISTS ( " +
-                    "    SELECT 1 FROM grades WHERE enrollment_id = ? AND component = 'Final Grade' " +
-                    ");";
-        
+        String sql = "INSERT INTO grades (enrollment_id, component, final_grade) " +
+                     "VALUES (?, 'Final Grade', ?) " +
+                     "ON DUPLICATE KEY UPDATE final_grade = VALUES(final_grade)";
         try (Connection conn = DatabaseConnector.getErpConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // In saveFinalGrade method, replace the stmt.set* calls with:
-            stmt.setString(1, finalGrade);  // UPDATE: final_grade = finalGrade
-            stmt.setInt(2, enrollmentId);   // UPDATE: WHERE enrollment_id = enrollmentId
-            stmt.setInt(3, enrollmentId);   // INSERT: enrollment_id = enrollmentId
-            stmt.setString(4, finalGrade);  // INSERT: final_grade = finalGrade
-            stmt.setInt(5, enrollmentId);   // EXISTS: WHERE enrollment_id = enrollmentId
+            stmt.setInt(1, enrollmentId);
+            stmt.setString(2, finalGrade);
 
             int rowsAffected = stmt.executeUpdate();
             return (rowsAffected > 0);

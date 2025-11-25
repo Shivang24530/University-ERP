@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import edu.univ.erp.domain.UnassignedSection;
 
-public class SectionDAO {
+public class SectionQuery {
 
     /**
      * Fetches a list of all sections that do not have an instructor assigned.
@@ -19,17 +19,7 @@ public class SectionDAO {
         List<UnassignedSection> sections = new ArrayList<>();
         
         // Query selects sections where instructor_id is NULL
-        String sql = "SELECT " +
-                     "  s.section_id, " +
-                     "  c.code, " +
-                     "  c.title, " +
-                     "  s.day_time, " +
-                     "  s.semester, " +
-                     "  s.year " +
-                     "FROM sections s " +
-                     "JOIN courses c ON s.course_id = c.course_id " +
-                     "WHERE s.instructor_id IS NULL " +
-                     "ORDER BY c.code, s.year, s.semester";
+        String sql = "SELECT " +"  s.section_id, " +"  c.code, " +"  c.title, " + "  s.day_time, " +"  s.semester, " +"  s.year " +"FROM sections s " +"JOIN courses c ON s.course_id = c.course_id " +"WHERE s.instructor_id IS NULL " +"ORDER BY c.code, s.year, s.semester";
 
         try (Connection conn = DatabaseConnector.getErpConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);

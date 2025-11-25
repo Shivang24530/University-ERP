@@ -9,7 +9,7 @@ import java.util.List;
 import edu.univ.erp.domain.CourseCatalogItem;
 import edu.univ.erp.domain.Course; // <-- IMPORT ADDED
 
-public class CourseDAO {
+public class CourseQuery {
 
     /**
      * Fetches the full course catalog (all sections) for the registration frame.

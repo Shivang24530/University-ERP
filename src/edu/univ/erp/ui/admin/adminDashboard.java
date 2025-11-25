@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import edu.univ.erp.auth.UserSession; 
+import edu.univ.erp.ui.auth.loginPage;
 import edu.univ.erp.ui.auth.ChangePasswordFrame; // <-- IMPORT ADDED
 
 public class adminDashboard {
@@ -100,6 +101,7 @@ public class adminDashboard {
                 JOptionPane.showMessageDialog(dashboardFrame, "Logged out.");
                 UserSession.clearSession(); 
                 dashboardFrame.dispose();
+                new loginPage();
             }
         });
     }

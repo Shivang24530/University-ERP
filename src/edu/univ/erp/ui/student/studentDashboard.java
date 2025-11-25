@@ -3,6 +3,7 @@ package edu.univ.erp.ui.student;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import edu.univ.erp.ui.auth.loginPage;
 import edu.univ.erp.auth.UserSession; // <-- IMPORT ADDED
 import edu.univ.erp.ui.auth.ChangePasswordFrame; 
 import edu.univ.erp.ui.common.MaintenanceBanner; // <-- IMPORT ADDED
@@ -97,7 +98,7 @@ public class studentDashboard {
                 JOptionPane.showMessageDialog(dashboardFrame, "Logged out.");
                 UserSession.clearSession(); // Clear the session
                 dashboardFrame.dispose();
-                // We would relaunch the login frame here
+                new loginPage();
             }
         });
     }

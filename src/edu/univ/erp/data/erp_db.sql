@@ -47,6 +47,8 @@ CREATE TABLE IF NOT EXISTS enrollments (
     FOREIGN KEY (student_id) REFERENCES students(user_id)
 );
 
+TRUNCATE TABLE grades;
+
 USE erp_db;
 SELECT * FROM students;
 SELECT * FROM instructors;
@@ -56,19 +58,23 @@ SELECT * FROM enrollments;
 SELECT * FROM grades;
 SELECT * FROM settings;
 
+DELETE FROM grades WHERE grade_id = 11;
 
 DELETE FROM sections WHERE section_id = 7;
 
 DELETE FROM enrollments WHERE enrollment_id = 3;
 
 CREATE TABLE IF NOT EXISTS grades (
-    grade_id INT PRIMARY KEY AUTO_INCREMENT,
+    grade_id INT AUTO_INCREMENT PRIMARY KEY,
     enrollment_id INT,
-    component VARCHAR(50),  -- e.g., 'Midterm', 'Final', 'Assignment 1'
+    component VARCHAR(50) ,
     score FLOAT,
     final_grade VARCHAR(2),
-    FOREIGN KEY (enrollment_id) REFERENCES enrollments(enrollment_id)
+    FOREIGN KEY (enrollment_id) REFERENCES enrollments(enrollment_id),
+    UNIQUE KEY uk_enroll_comp (enrollment_id, component)
 );
+
+DROP TABLE IF EXISTS grades;
 
 CREATE TABLE IF NOT EXISTS settings (
     setting_key VARCHAR(50) PRIMARY KEY,

@@ -9,8 +9,8 @@ import edu.univ.erp.ui.admin.adminDashboard; // <-- FIX: ADDED IMPORT
 import java.awt.event.ActionEvent;   
 import java.awt.event.ActionListener;  
 
-class loginPage {
-    public static void main(String[] args) {
+public class loginPage {
+    public loginPage() {
         JFrame loginFrame = new JFrame("University ERP Login"); 
 
         loginFrame.setSize(450, 300); 
@@ -80,5 +80,9 @@ class loginPage {
                 }
             }
         });
+    }
+
+    public static void main(String[] args) {
+        new loginPage();
     }
 }

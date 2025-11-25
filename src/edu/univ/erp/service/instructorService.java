@@ -1,9 +1,9 @@
 package edu.univ.erp.service;
 
 import java.util.List;
-import edu.univ.erp.data.GradeDAO;
-import edu.univ.erp.data.InstructorDAO;
-import edu.univ.erp.data.SettingsDAO;
+import edu.univ.erp.data.GradeQuery;
+import edu.univ.erp.data.InstructorQuery;
+import edu.univ.erp.data.SettingsQuery;
 import edu.univ.erp.domain.ClassStatistic;
 import edu.univ.erp.domain.GradebookEntry;
 import edu.univ.erp.domain.InstructorSectionItem;
@@ -19,14 +19,14 @@ import edu.univ.erp.auth.UserSession;
 
 public class instructorService {
 
-    private InstructorDAO instructorDAO;
-    private GradeDAO gradeDAO;
-    private SettingsDAO settingsDAO;
+    private InstructorQuery instructorDAO;
+    private GradeQuery gradeDAO;
+    private SettingsQuery settingsDAO;
 
     public instructorService() {
-        this.instructorDAO = new InstructorDAO();
-        this.gradeDAO = new GradeDAO();
-        this.settingsDAO = new SettingsDAO();
+        this.instructorDAO = new InstructorQuery();
+        this.gradeDAO = new GradeQuery();
+        this.settingsDAO = new SettingsQuery();
     }
 
     /**
@@ -118,7 +118,7 @@ public class instructorService {
      * Calculates the final *letter grade* based on a weighting rule.
      */
     public String calculateFinalGrade(double quiz1, double midterm, double finalExam) {
-        if (quiz1 < 0 || midterm < 0 || finalExam < 0) {
+        if (quiz1 < 0 || quiz1 > 100 || midterm < 0 || midterm > 100 || finalExam < 0 || finalExam > 100) {
             return "--";
         }
         double finalScore = (quiz1 * 0.20) + (midterm * 0.30) + (finalExam * 0.50);

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import edu.univ.erp.service.adminService;
-import edu.univ.erp.data.CourseDAO; // We need this to get the course list
+import edu.univ.erp.data.CourseQuery; // We need this to get the course list
 import edu.univ.erp.domain.Course; // To hold the course data
 
 public class CourseManagementFrame {
@@ -228,7 +228,7 @@ public class CourseManagementFrame {
      */
     private void populateCourseComboBox() {
         // We need a new CourseDAO instance just for this
-        CourseDAO dao = new CourseDAO();
+        CourseQuery dao = new CourseQuery();
         List<Course> courses = dao.getAllCourses();
         
         // Clear the old list

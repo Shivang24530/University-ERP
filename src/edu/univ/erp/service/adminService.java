@@ -10,9 +10,9 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import edu.univ.erp.data.ConfigLoader;
 import edu.univ.erp.data.DatabaseConnector;
-import edu.univ.erp.data.InstructorDAO; 
-import edu.univ.erp.data.SectionDAO; 
-import edu.univ.erp.data.SettingsDAO; // <-- IMPORT ADDED
+import edu.univ.erp.data.InstructorQuery; 
+import edu.univ.erp.data.SectionQuery; 
+import edu.univ.erp.data.SettingsQuery; // <-- IMPORT ADDED
 import edu.univ.erp.domain.InstructorProfile; 
 import edu.univ.erp.domain.UnassignedSection; 
 import java.io.File; // <-- IMPORT ADDED
@@ -22,14 +22,14 @@ import java.util.Map; // <-- IMPORT ADDED
 // This is the "brain" for the Admin
 public class adminService {
     
-    private SectionDAO sectionDAO;
-    private InstructorDAO instructorDAO;
-    private SettingsDAO settingsDAO; // <-- ADDED
+    private SectionQuery sectionDAO;
+    private InstructorQuery instructorDAO;
+    private SettingsQuery settingsDAO; // <-- ADDED
 
     public adminService() {
-        this.sectionDAO = new SectionDAO();
-        this.instructorDAO = new InstructorDAO();
-        this.settingsDAO = new SettingsDAO(); // <-- ADDED
+        this.sectionDAO = new SectionQuery();
+        this.instructorDAO = new InstructorQuery();
+        this.settingsDAO = new SettingsQuery(); // <-- ADDED
     }
     
     // --- NEW METHODS FOR MAINTENANCE MODE ---

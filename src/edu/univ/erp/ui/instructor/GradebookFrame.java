@@ -103,13 +103,19 @@ public class GradebookFrame {
 
                     try {
                         double score = Double.parseDouble(valueStr);
+                        if (score < 0 || score > 100 || Double.isNaN(score)) {
+                            JOptionPane.showMessageDialog(frame, "Score must be a number between 0 and 100.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                            gradeModel.setValueAt(null, row, col);
+                            return;
+                        }
                         String error = service.saveGrade(enrollmentId, component, score);
-                        
                         if (error != null) {
                             JOptionPane.showMessageDialog(frame, error, "Save Failed", JOptionPane.ERROR_MESSAGE);
-                        }
+                            gradeModel.setValueAt(null, row, col);
+                        } 
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(frame, "Invalid score. Please enter a number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                        gradeModel.setValueAt(null, row, col);
                     }
                 }
             }

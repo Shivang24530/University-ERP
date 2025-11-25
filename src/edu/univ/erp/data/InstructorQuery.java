@@ -11,7 +11,7 @@ import edu.univ.erp.domain.InstructorProfile;
 import edu.univ.erp.domain.InstructorSectionItem;
 import edu.univ.erp.domain.StudentRosterItem;
 
-public class InstructorDAO {
+public class InstructorQuery {
 
     /**
      * Fetches a list of all sections taught by a specific instructor.
@@ -24,17 +24,7 @@ public class InstructorDAO {
         
         // This query joins sections and courses, and includes a subquery
         // to count the number of 'Enrolled' students.
-        String sql = "SELECT " +
-                     "  s.section_id, " +
-                     "  c.code, " +
-                     "  c.title, " +
-                     "  s.day_time, " +
-                     "  s.room, " +
-                     "  s.capacity, " +
-                     "  (SELECT COUNT(*) FROM enrollments e WHERE e.section_id = s.section_id AND e.status = 'Enrolled') AS enrolled_count " +
-                     "FROM sections s " +
-                     "JOIN courses c ON s.course_id = c.course_id " +
-                     "WHERE s.instructor_id = ?";
+        String sql = "SELECT " +"  s.section_id, " +"  c.code, " +"  c.title, " +"  s.day_time, " +"  s.room, " +"  s.capacity, " +"  (SELECT COUNT(*) FROM enrollments e WHERE e.section_id = s.section_id AND e.status = 'Enrolled') AS enrolled_count " +"FROM sections s " +"JOIN courses c ON s.course_id = c.course_id " + "WHERE s.instructor_id = ?";
 
         try (Connection conn = DatabaseConnector.getErpConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -79,17 +69,8 @@ public class InstructorDAO {
         
         // This query joins enrollments, students, and auth_db to get student info.
         // It also gets the 'final_grade' if one exists for that enrollment.
-        String sql = "SELECT " +
-                     "  e.enrollment_id, " +
-                     "  s.user_id, " +
-                     "  a.username AS student_name, " +
-                     "  s.roll_no, " +
-                     "  (SELECT g.final_grade FROM grades g WHERE g.enrollment_id = e.enrollment_id AND g.final_grade IS NOT NULL LIMIT 1) AS final_grade " +
-                     "FROM enrollments e " +
-                     "JOIN students s ON e.student_id = s.user_id " +
-                     "JOIN auth_db.users_auth a ON s.user_id = a.user_id " +
-                     "WHERE e.section_id = ? AND e.status = 'Enrolled' " +
-                     "ORDER BY s.roll_no";
+        String sql = "SELECT " +"  e.enrollment_id, " +"  s.user_id, " +"  a.username AS student_name, " +"  s.roll_no, " +"  (SELECT g.final_grade FROM grades g WHERE g.enrollment_id = e.enrollment_id AND g.final_grade IS NOT NULL LIMIT 1) AS final_grade " +"FROM enrollments e " +
+                     "JOIN students s ON e.student_id = s.user_id " +"JOIN auth_db.users_auth a ON s.user_id = a.user_id " +"WHERE e.section_id = ? AND e.status = 'Enrolled' " +"ORDER BY s.roll_no";
 
         try (Connection conn = DatabaseConnector.getErpConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -127,14 +108,7 @@ public class InstructorDAO {
         List<InstructorProfile> instructors = new ArrayList<>();
         
         // This query joins instructors and auth_db to get their names
-        String sql = "SELECT " +
-                     "  i.user_id, " +
-                     "  a.username, " +
-                     "  i.department " +
-                     "FROM instructors i " +
-                     "JOIN auth_db.users_auth a ON i.user_id = a.user_id " +
-                     "WHERE a.role = 'instructor' " +
-                     "ORDER BY a.username";
+        String sql = "SELECT " +"  i.user_id, " +"  a.username, " +"  i.department " +"FROM instructors i " +"JOIN auth_db.users_auth a ON i.user_id = a.user_id " +"WHERE a.role = 'instructor' " +"ORDER BY a.username";
 
         try (Connection conn = DatabaseConnector.getErpConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -165,8 +139,7 @@ public class InstructorDAO {
      * @return true if the instructor owns this section, false otherwise.
      */
     public boolean isSectionOwnedByInstructor(int sectionId, int instructorId) {
-        String sql = "SELECT 1 FROM sections s " +
-                     "WHERE s.section_id = ? AND s.instructor_id = ?";
+        String sql = "SELECT 1 FROM sections s " +"WHERE s.section_id = ? AND s.instructor_id = ?";
 
         try (Connection conn = DatabaseConnector.getErpConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

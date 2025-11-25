@@ -3,11 +3,11 @@ package edu.univ.erp.service;
 import java.util.List;
 
 import edu.univ.erp.auth.UserSession;
-import edu.univ.erp.data.CourseDAO;
-import edu.univ.erp.data.EnrollmentDAO;
-import edu.univ.erp.data.GradeDAO;
-import edu.univ.erp.data.StudentDAO;
-import edu.univ.erp.data.SettingsDAO; // <-- IMPORT ADDED
+import edu.univ.erp.data.CourseQuery;
+import edu.univ.erp.data.EnrollmentQuery;
+import edu.univ.erp.data.GradeQuery;
+import edu.univ.erp.data.StudentQuery;
+import edu.univ.erp.data.SettingsQuery; // <-- IMPORT ADDED
 import edu.univ.erp.domain.CourseCatalogItem;
 import edu.univ.erp.domain.MySectionItem;
 import edu.univ.erp.domain.TimetableItem;
@@ -24,18 +24,18 @@ import java.io.IOException;
 
 public class studentService {
     
-    private CourseDAO courseDAO;
-    private EnrollmentDAO enrollmentDAO;
-    private GradeDAO gradeDAO;
-    private StudentDAO studentDAO;
-    private SettingsDAO settingsDAO; // <-- ADDED
+    private CourseQuery courseDAO;
+    private EnrollmentQuery enrollmentDAO;
+    private GradeQuery gradeDAO;
+    private StudentQuery studentDAO;
+    private SettingsQuery settingsDAO; // <-- ADDED
 
     public studentService() {
-        this.courseDAO = new CourseDAO();
-        this.enrollmentDAO = new EnrollmentDAO();
-        this.gradeDAO = new GradeDAO();
-        this.studentDAO = new StudentDAO();
-        this.settingsDAO = new SettingsDAO(); // <-- ADDED
+        this.courseDAO = new CourseQuery();
+        this.enrollmentDAO = new EnrollmentQuery();
+        this.gradeDAO = new GradeQuery();
+        this.studentDAO = new StudentQuery();
+        this.settingsDAO = new SettingsQuery(); // <-- ADDED
     }
 
     // --- Registration & Timetable Methods ---

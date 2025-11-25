@@ -9,7 +9,7 @@ import edu.univ.erp.domain.StudentProfile; // We need this to return the profile
 /**
  * Data Access Object for Student-related database operations.
  */
-public class StudentDAO {
+public class StudentQuery {
 
     /**
      * Fetches a single student's profile by their user_id.

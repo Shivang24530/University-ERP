@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SettingsDAO {
+public class SettingsQuery {
 
     private static final String MAINTENANCE_KEY = "maintenance_mode";
 
