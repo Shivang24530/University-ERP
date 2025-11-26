@@ -1,6 +1,12 @@
+/*
+ * MySectionsFrame
+ * UI frame that displays the instructor's assigned sections and provides
+ * navigation to the gradebook and class statistics.
+ */
 package edu.univ.erp.ui.instructor;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,11 +30,16 @@ public class MySectionsFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JLabel titleLabel = new JLabel("My Assigned Sections");
-        titleLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
-        titleLabel.setBounds(300, 20, 200, 20);
+        int fW = frame.getWidth();
+        int titleW = 400;
+        titleLabel.setBounds((fW - titleW) / 2, 20, titleW, 24);
+        UITheme.styleLabel(titleLabel, UITheme.SUBTITLE_FONT);
         frame.add(titleLabel);
+
+        
 
         // --- Sections Table (Unchanged) ---
         String[] columns = {"Section ID", "Course", "Title", "Time", "Room", "Enrollment"};
@@ -60,6 +71,10 @@ public class MySectionsFrame {
         JButton backButton = new JButton("Back to Dashboard");
         backButton.setBounds(610, 320, 150, 30);
         frame.add(backButton);
+
+        UITheme.styleButton(manageGradesButton);
+        UITheme.styleButton(viewStatsButton);
+        UITheme.styleButton(backButton);
 
         frame.setVisible(true);
 

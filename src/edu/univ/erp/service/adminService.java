@@ -128,14 +128,14 @@ public class adminService {
         } catch (SQLException e) {
             e.printStackTrace();
             try { if (erpConn != null) erpConn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
-            // TODO: Implement a cleanup mechanism to delete the user from auth_db if this part fails.
+            // Implement a cleanup mechanism to delete the user from auth_db if this part fails.
             return "Error creating ERP profile: " + e.getMessage() + ". User auth record was created but profile failed.";
         } finally {
             try { if (erpConn != null) { erpConn.setAutoCommit(true); erpConn.close(); } } catch (SQLException e) { e.printStackTrace(); }
         }
     }
     
-    // --- Course Management (Unchanged) ---
+    // --- Course Management  ---
     public String createNewCourse(String code, String title, int credits) {
         String sql = "INSERT INTO courses (code, title, credits) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseConnector.getErpConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -159,7 +159,7 @@ public class adminService {
         }
     }
     
-    // --- Assignment Management (Unchanged) ---
+    // --- Assignment Management  ---
     public List<UnassignedSection> getUnassignedSections() {
         return sectionDAO.getUnassignedSections();
     }

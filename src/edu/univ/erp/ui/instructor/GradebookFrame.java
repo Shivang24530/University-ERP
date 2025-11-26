@@ -1,6 +1,12 @@
+/*
+ * GradebookFrame
+ * UI for viewing and editing students' grades for a specific section.
+ * Supports inline score edits, import/export CSV and final grade calculation.
+ */
 package edu.univ.erp.ui.instructor;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.event.TableModelEvent;
@@ -39,12 +45,14 @@ public class GradebookFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
-        // UI components
         JLabel titleLabel = new JLabel("Gradebook: " + courseInfo);
-        titleLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
         titleLabel.setBounds(20, 15, 400, 20);
+        UITheme.styleLabel(titleLabel, UITheme.SUBTITLE_FONT);
         frame.add(titleLabel);
+
+        // UI components (title already added above with themed style)
         
         gradeModel = new DefaultTableModel(null, columns) {
             @Override
@@ -66,18 +74,22 @@ public class GradebookFrame {
         
         JButton calcFinalButton = new JButton("Calculate Final Grades");
         calcFinalButton.setBounds(20, 520, 200, 30);
+        UITheme.styleButton(calcFinalButton);
         frame.add(calcFinalButton);
         
         JButton exportButton = new JButton("Export as CSV");
         exportButton.setBounds(230, 520, 150, 30);
+        UITheme.styleButton(exportButton);
         frame.add(exportButton);
         
         JButton importButton = new JButton("Import from CSV");
         importButton.setBounds(390, 520, 150, 30);
+        UITheme.styleButton(importButton);
         frame.add(importButton);
         
         JButton backButton = new JButton("Back to My Sections");
         backButton.setBounds(710, 520, 150, 30);
+        UITheme.styleButton(backButton);
         frame.add(backButton);
         
         frame.setVisible(true);

@@ -1,6 +1,11 @@
+/*
+ * MaintenanceFrame
+ * Allows administrators to toggle system maintenance mode and view status.
+ */
 package edu.univ.erp.ui.admin;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -21,6 +26,7 @@ public class MaintenanceFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JButton backButton = new JButton("Back");
         backButton.setBounds(360, 10, 70, 25);
@@ -35,8 +41,8 @@ public class MaintenanceFrame {
 
         // --- Status Display ---
         JLabel titleLabel = new JLabel("Maintenance Mode is Currently:");
-        titleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         titleLabel.setBounds(100, 60, 250, 30);
+        UITheme.styleLabel(titleLabel, UITheme.REGULAR_FONT);
         frame.add(titleLabel);
 
         statusLabel = new JLabel("LOADING...");

@@ -1,6 +1,11 @@
+/*
+ * BackupFrame
+ * UI for creating and restoring SQL backups of the `erp_db` database.
+ */
 package edu.univ.erp.ui.admin;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -21,9 +26,11 @@ public class BackupFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JButton backButton = new JButton("Back");
         backButton.setBounds(410, 10, 70, 25);
+        UITheme.styleButton(backButton);
         frame.add(backButton);
         
         backButton.addActionListener(new ActionListener() {

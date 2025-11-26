@@ -1,6 +1,11 @@
+/*
+ * GradesFrame
+ * Shows a student's grade components and final grades in a read-only table.
+ */
 package edu.univ.erp.ui.student;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,10 +29,13 @@ public class GradesFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JLabel titleLabel = new JLabel("My Grades");
-        titleLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
-        titleLabel.setBounds(250, 20, 200, 20);
+        int fw = frame.getWidth();
+        int w = 300;
+        titleLabel.setBounds((fw - w) / 2, 20, w, 24);
+        UITheme.styleLabel(titleLabel, UITheme.SUBTITLE_FONT);
         frame.add(titleLabel);
 
         // --- DYNAMIC GRADES TABLE ---
@@ -51,6 +59,7 @@ public class GradesFrame {
         // Navigation
         JButton backButton = new JButton("Back to Dashboard");
         backButton.setBounds(225, 320, 150, 30);
+        UITheme.styleButton(backButton);
         frame.add(backButton);
 
         frame.setVisible(true);

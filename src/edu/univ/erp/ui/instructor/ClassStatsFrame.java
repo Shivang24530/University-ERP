@@ -1,6 +1,12 @@
+/*
+ * ClassStatsFrame
+ * UI that shows statistical summaries (average, min, max, count)
+ * for grade components in a section.
+ */
 package edu.univ.erp.ui.instructor;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,10 +32,11 @@ public class ClassStatsFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JLabel titleLabel = new JLabel("Class Statistics: " + courseInfo);
-        titleLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
         titleLabel.setBounds(20, 15, 400, 20);
+        UITheme.styleLabel(titleLabel, UITheme.SUBTITLE_FONT);
         frame.add(titleLabel);
 
         // --- Statistics Table ---
@@ -50,6 +57,7 @@ public class ClassStatsFrame {
         // --- Buttons ---
         JButton backButton = new JButton("Back to My Sections");
         backButton.setBounds(410, 320, 150, 30);
+        UITheme.styleButton(backButton);
         frame.add(backButton);
 
         frame.setVisible(true);

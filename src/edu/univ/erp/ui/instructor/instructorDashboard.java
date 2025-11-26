@@ -1,6 +1,12 @@
+/*
+ * Instructor Dashboard
+ * Main dashboard UI for instructors to access My Sections, Grade Book,
+ * Class Stats and account actions (logout/change password).
+ */
 package edu.univ.erp.ui.instructor;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import java.awt.event.ActionEvent;   
 import java.awt.event.ActionListener;  
 import edu.univ.erp.auth.UserSession; 
@@ -17,7 +23,14 @@ public class instructorDashboard {
         dashboardFrame.setSize(500, 600); // Made height taller
         dashboardFrame.setLayout(null);
         dashboardFrame.setLocationRelativeTo(null);
-        dashboardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        dashboardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        UITheme.styleFrame(dashboardFrame);
+
+        // Title
+        JLabel titleLabel = new JLabel("Instructor Dashboard");
+        titleLabel.setBounds(120, 10, 300, 40);
+        UITheme.styleLabel(titleLabel, UITheme.TITLE_FONT);
+        dashboardFrame.add(titleLabel);
 
         // --- ADD THIS LINE ---
         // Checks if maintenance is on and adds the banner if needed
@@ -43,6 +56,13 @@ public class instructorDashboard {
         JButton logoutBtn = new JButton("Logout");
         logoutBtn.setBounds(185, 400, 130, 40); // Moved down
         dashboardFrame.add(logoutBtn);
+
+        // Style buttons
+        UITheme.styleButton(mySections);
+        UITheme.styleButton(gradeBook);
+        UITheme.styleButton(classStats);
+        UITheme.styleButton(changePassBtn);
+        UITheme.styleDangerButton(logoutBtn);
 
         dashboardFrame.setVisible(true);
 

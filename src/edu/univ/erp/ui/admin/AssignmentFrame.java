@@ -1,6 +1,11 @@
+/*
+ * AssignmentFrame
+ * Admin UI for assigning instructors to unassigned sections.
+ */
 package edu.univ.erp.ui.admin;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,9 +31,11 @@ public class AssignmentFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JButton backButton = new JButton("Back");
         backButton.setBounds(810, 10, 70, 25);
+        UITheme.styleButton(backButton);
         frame.add(backButton);
         
         backButton.addActionListener(new ActionListener() {

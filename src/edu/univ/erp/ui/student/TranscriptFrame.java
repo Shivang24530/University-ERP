@@ -1,6 +1,12 @@
+/*
+ * TranscriptFrame
+ * Presents an unofficial transcript preview and allows downloading the
+ * transcript as a CSV file for the logged-in student.
+ */
 package edu.univ.erp.ui.student;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File; // <-- IMPORT ADDED
@@ -26,16 +32,20 @@ public class TranscriptFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JLabel titleLabel = new JLabel("Unofficial Transcript");
-        titleLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
-        titleLabel.setBounds(200, 20, 200, 20);
+        int fw = frame.getWidth();
+        int tw = 300;
+        titleLabel.setBounds((fw - tw) / 2, 20, tw, 24);
+        UITheme.styleLabel(titleLabel, UITheme.SUBTITLE_FONT);
         frame.add(titleLabel);
 
         // --- Transcript Preview Area ---
         transcriptArea = new JTextArea();
         transcriptArea.setEditable(false);
         transcriptArea.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12)); // Use monospaced
+        transcriptArea.setBorder(BorderFactory.createLineBorder(UITheme.PRIMARY_COLOR, 1));
         
         JScrollPane scrollPane = new JScrollPane(transcriptArea);
         scrollPane.setBounds(20, 50, 540, 350);

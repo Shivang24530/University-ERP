@@ -58,11 +58,11 @@ SELECT * FROM enrollments;
 SELECT * FROM grades;
 SELECT * FROM settings;
 
-DELETE FROM grades WHERE grade_id = 11;
+DELETE FROM courses WHERE course_id = 4;
 
-DELETE FROM sections WHERE section_id = 7;
+DELETE FROM sections WHERE section_id = 6;
 
-DELETE FROM enrollments WHERE enrollment_id = 3;
+DELETE FROM enrollments WHERE enrollment_id = 9;
 
 CREATE TABLE IF NOT EXISTS grades (
     grade_id INT AUTO_INCREMENT PRIMARY KEY,

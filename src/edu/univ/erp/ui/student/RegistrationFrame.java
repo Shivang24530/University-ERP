@@ -1,6 +1,12 @@
+/*
+ * RegistrationFrame
+ * UI for browsing the course catalog, registering for sections, and
+ * managing the student's enrolled sections (drop functionality).
+ */
 package edu.univ.erp.ui.student;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,12 +35,13 @@ public class RegistrationFrame {
         frame.setSize(800, 600);
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         // --- 1. Course Catalog (for Registering) ---
         JLabel catalogLabel = new JLabel("Available Courses (Course Catalog)");
-        catalogLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
         catalogLabel.setBounds(20, 20, 300, 20);
+        UITheme.styleLabel(catalogLabel, UITheme.SUBTITLE_FONT);
         frame.add(catalogLabel);
 
         // --- Catalog Table Setup ---
@@ -58,6 +65,7 @@ public class RegistrationFrame {
         
         JButton registerButton = new JButton("Register for Selected Section");
         registerButton.setBounds(20, 260, 250, 30);
+        UITheme.styleButton(registerButton);
         frame.add(registerButton);
 
         // --- 2. My Sections (for Dropping) ---
@@ -87,11 +95,13 @@ public class RegistrationFrame {
         
         JButton dropButton = new JButton("Drop Selected Section");
         dropButton.setBounds(20, 500, 250, 30);
+        UITheme.styleButton(dropButton);
         frame.add(dropButton);
 
         // --- 3. Navigation ---
         JButton backButton = new JButton("Back to Dashboard");
         backButton.setBounds(610, 500, 150, 30);
+        UITheme.styleButton(backButton);
         frame.add(backButton);
 
         frame.setVisible(true);

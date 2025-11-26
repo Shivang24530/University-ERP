@@ -1,3 +1,7 @@
+/*
+ * ChangePasswordFrame
+ * Swing UI frame allowing a logged-in user to change their password.
+ */
 package edu.univ.erp.ui.auth; // Placing this in the 'auth' package
 
 import javax.swing.*;
@@ -5,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import edu.univ.erp.auth.AuthService;
 import edu.univ.erp.auth.UserSession;
+import edu.univ.erp.ui.common.UITheme;
 
 public class ChangePasswordFrame {
 
@@ -19,10 +24,14 @@ public class ChangePasswordFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Don't exit app
+        UITheme.styleFrame(frame);
 
         JLabel titleLabel = new JLabel("Change Your Password");
-        titleLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
-        titleLabel.setBounds(125, 20, 200, 20);
+        // center the title and give more width so text isn't clipped
+        int frameWidth = frame.getWidth();
+        int titleWidth = 300;
+        titleLabel.setBounds((frameWidth - titleWidth) / 2, 20, titleWidth, 24);
+        UITheme.styleLabel(titleLabel, UITheme.SUBTITLE_FONT);
         frame.add(titleLabel);
 
         // --- Form Fields ---
@@ -41,7 +50,7 @@ public class ChangePasswordFrame {
         frame.add(newPassText);
 
         JLabel confirmPassLabel = new JLabel("Confirm New Password:");
-        confirmPassLabel.setBounds(50, 180, 150, 30);
+        confirmPassLabel.setBounds(50, 180, 180, 30);
         frame.add(confirmPassLabel);
         JPasswordField confirmPassText = new JPasswordField();
         confirmPassText.setBounds(200, 180, 200, 30);
@@ -50,6 +59,7 @@ public class ChangePasswordFrame {
         // --- Buttons ---
         JButton changeButton = new JButton("Change Password");
         changeButton.setBounds(150, 250, 150, 30);
+        UITheme.styleButton(changeButton);
         frame.add(changeButton);
 
         frame.setVisible(true);

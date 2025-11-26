@@ -1,6 +1,11 @@
+/*
+ * TimetableFrame
+ * Displays the student's weekly timetable in a non-editable grid.
+ */
 package edu.univ.erp.ui.student;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer; // <-- IMPORT ADDED
 import java.awt.event.ActionEvent;
@@ -21,10 +26,13 @@ public class TimetableFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JLabel titleLabel = new JLabel("My Weekly Timetable");
-        titleLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
-        titleLabel.setBounds(300, 20, 200, 20);
+        int frameW = frame.getWidth();
+        int tW = 400;
+        titleLabel.setBounds((frameW - tW) / 2, 20, tW, 24);
+        UITheme.styleLabel(titleLabel, UITheme.SUBTITLE_FONT);
         frame.add(titleLabel);
 
         // --- DYNAMIC TIMETABLE GRID ---
@@ -63,6 +71,7 @@ public class TimetableFrame {
         // Navigation
         JButton backButton = new JButton("Back to Dashboard");
         backButton.setBounds(325, 400, 150, 30); // Moved down
+        UITheme.styleButton(backButton);
         frame.add(backButton);
 
         frame.setVisible(true);

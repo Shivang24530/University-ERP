@@ -1,6 +1,12 @@
+/*
+ * Admin Dashboard
+ * Main admin UI to manage users, courses, maintenance, backups and other
+ * system-level actions.
+ */
 package edu.univ.erp.ui.admin;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import edu.univ.erp.auth.UserSession; 
@@ -17,6 +23,12 @@ public class adminDashboard {
         dashboardFrame.setLayout(null);
         dashboardFrame.setLocationRelativeTo(null);
         dashboardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        UITheme.styleFrame(dashboardFrame);
+
+        JLabel titleLabel = new JLabel("Admin Dashboard");
+        titleLabel.setBounds(120, 10, 300, 40);
+        UITheme.styleLabel(titleLabel, UITheme.TITLE_FONT);
+        dashboardFrame.add(titleLabel);
 
         JButton userManagement = new JButton("User Management");
         userManagement.setBounds(100, 60, 300, 50); // <-- Adjusted height/spacing
@@ -47,6 +59,15 @@ public class adminDashboard {
         JButton logoutBtn = new JButton("Logout");
         logoutBtn.setBounds(175, 440, 150, 40); // <-- Adjusted position
         dashboardFrame.add(logoutBtn);
+
+        // Style buttons
+        UITheme.styleButton(userManagement);
+        UITheme.styleButton(courseManagement);
+        UITheme.styleButton(instructorAssignment);
+        UITheme.styleButton(maintenanceMode);
+        UITheme.styleButton(changePassBtn);
+        UITheme.styleButton(backupBtn);
+        UITheme.styleDangerButton(logoutBtn);
 
         dashboardFrame.setVisible(true);
 

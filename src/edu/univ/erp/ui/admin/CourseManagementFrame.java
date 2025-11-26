@@ -1,6 +1,11 @@
+/*
+ * CourseManagementFrame
+ * Administrative UI to create and manage courses and their sections.
+ */
 package edu.univ.erp.ui.admin;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -34,9 +39,11 @@ public class CourseManagementFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JButton backButton = new JButton("Back");
         backButton.setBounds(710, 10, 70, 25);
+        UITheme.styleButton(backButton);
         frame.add(backButton);
         
         backButton.addActionListener(new ActionListener() {

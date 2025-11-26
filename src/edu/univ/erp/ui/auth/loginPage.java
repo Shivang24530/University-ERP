@@ -1,6 +1,12 @@
+/*
+ * Login Page
+ * Main login UI for the application; authenticates users and redirects
+ * them to role-specific dashboards.
+ */
 package edu.univ.erp.ui.auth;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import edu.univ.erp.auth.AuthService;
 import edu.univ.erp.ui.instructor.instructorDashboard;
 import edu.univ.erp.ui.student.studentDashboard;
@@ -35,6 +41,14 @@ public class loginPage {
         JButton loginBtn = new JButton("Login");
         loginBtn.setBounds(150, 170, 100, 30);
         loginFrame.add(loginBtn);
+
+        // Apply theme
+        UITheme.styleFrame(loginFrame);
+        UITheme.styleLabel(userLabel, UITheme.REGULAR_FONT);
+        UITheme.styleLabel(passLabel, UITheme.REGULAR_FONT);
+        UITheme.styleTextField(userText);
+        UITheme.styleTextField(passText);
+        UITheme.styleButton(loginBtn);
 
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loginFrame.setLocationRelativeTo(null); 

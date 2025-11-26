@@ -1,6 +1,11 @@
+/*
+ * UserManagementFrame
+ * Admin UI for creating and managing application users and their roles.
+ */
 package edu.univ.erp.ui.admin;
 
 import javax.swing.*;
+import edu.univ.erp.ui.common.UITheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import edu.univ.erp.service.adminService; // Import the new service
@@ -25,10 +30,11 @@ public class UserManagementFrame {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        UITheme.styleFrame(frame);
 
         JLabel titleLabel = new JLabel("Create New User");
-        titleLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
         titleLabel.setBounds(150, 20, 200, 20);
+        UITheme.styleLabel(titleLabel, UITheme.SUBTITLE_FONT);
         frame.add(titleLabel);
 
         // --- Form Fields ---

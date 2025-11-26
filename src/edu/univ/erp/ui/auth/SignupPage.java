@@ -1,3 +1,7 @@
+/*
+ * SignupPage
+ * Simple Swing UI for user signup; creates new users in the auth service.
+ */
 package edu.univ.erp.ui.auth;
 
 import javax.swing.JButton;
@@ -11,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox; // Import for the dropdown
 import edu.univ.erp.auth.AuthService; 
+import edu.univ.erp.ui.common.UITheme;
 
 public class SignupPage { 
 
@@ -26,17 +31,21 @@ public class SignupPage {
         JFrame signupFrame = new JFrame("University ERP SignUp");
         signupFrame.setSize(450, 300);
         signupFrame.setLayout(null);
+        UITheme.styleFrame(signupFrame);
 
         JLabel userLabel = new JLabel("Username:");
         userLabel.setBounds(50, 60, 100, 30);
+        UITheme.styleLabel(userLabel, UITheme.REGULAR_FONT);
         signupFrame.add(userLabel);
 
         JTextField userText = new JTextField();
         userText.setBounds(150, 60, 250, 30);
+        UITheme.styleTextField(userText);
         signupFrame.add(userText);
 
         JLabel roleLabel = new JLabel("Role:");
         roleLabel.setBounds(50, 110, 100, 30);
+        UITheme.styleLabel(roleLabel, UITheme.REGULAR_FONT);
         signupFrame.add(roleLabel);
 
         // --- START OF FIX ---
@@ -55,8 +64,9 @@ public class SignupPage {
         passText.setBounds(150, 160, 250, 30);
         signupFrame.add(passText);
 
-        JButton signupBtn = new JButton("SignUp");
+        JButton signupBtn = new JButton("Sign Up");
         signupBtn.setBounds(150, 220, 100, 30);
+        UITheme.styleButton(signupBtn);
         signupFrame.add(signupBtn);
 
         signupFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
