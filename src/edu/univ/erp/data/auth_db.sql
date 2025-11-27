@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS users_auth (
     failed_attempts INT DEFAULT 0,           -- <-- THIS IS THE NEW LINE
     last_login TIMESTAMP NULL                -- The last time they logged in
 );
-
+-- unlock user_id 1
+UPDATE users_auth SET status='active', failed_attempts=0 WHERE user_id=1;
 SELECT * FROM users_auth;
 DELETE from users_auth where user_id=10;
 USE erp_db;
