@@ -110,7 +110,7 @@ VALUES
 INSERT INTO sections (course_id, instructor_id, day_time, room, capacity, semester, year) 
 VALUES 
 (1, 2, 'Tue/Thu 15:00', 'C102', 250, 'Monsoon', 2025),
-(2, 2, 'Tue/Thu 10:00', 'MTH203', 25, 'Monsoon', 2025); 
+(2, 2, 'Tue/Thu 10:00', 'MTH203', 1, 'Monsoon', 2025); 
 
 
 SELECT * FROM students;
