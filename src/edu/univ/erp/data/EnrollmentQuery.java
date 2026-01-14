@@ -55,13 +55,13 @@ public class EnrollmentQuery {
                      "  c.code, " +
                      "  c.title, " +
                      "  a.username AS instructor_name, " +
-                     "  CONCAT(s.day_time, ' / ', s.room) AS time_room " + // Combine time/room
+                     "  CONCAT(s.day_time, ' / ', s.room) AS time_room " + 
                      "FROM enrollments e " +
                      "JOIN sections s ON e.section_id = s.section_id " +
                      "JOIN courses c ON s.course_id = c.course_id " +
                      "LEFT JOIN instructors i ON s.instructor_id = i.user_id " +
                      "LEFT JOIN auth_db.users_auth a ON i.user_id = a.user_id " +
-                     "WHERE e.student_id = ? AND e.status = 'Enrolled'"; // Filter by student
+                     "WHERE e.student_id = ? AND e.status = 'Enrolled'"; 
 
         try (Connection conn = DatabaseConnector.getErpConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -192,4 +192,4 @@ public class EnrollmentQuery {
         // Return 0,0 on error or if section not found
         return new int[]{0, 0}; 
     }
-}
+} 
